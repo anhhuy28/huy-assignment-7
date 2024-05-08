@@ -37,7 +37,15 @@ public class CustomArrayList<T> implements CustomList<T> {
 		if (index > size) {
 			throw new IndexOutOfBoundsException("Index " + index + "is out of bounds");
 		}
-
+		
+	    if (size == items.length) {
+	        Object[] newArray = new Object[items.length * 2];
+	        for (int i = 0; i < items.length; i++) {
+	            newArray[i] = items[i];
+	        }
+	        items = newArray;
+	    }
+		
 		for (Integer i = size; i > index; i--) {
 			items[i] = items[i - 1];
 		}
