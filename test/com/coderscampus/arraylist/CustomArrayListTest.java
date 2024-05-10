@@ -95,4 +95,21 @@ class CustomArrayListTest {
             itemContents.remove(0);
         });
 	}	
+	
+	@Test
+	void should_add_item_to_full_array() {
+	    // Arrange
+	    CustomList<Integer> itemContents = new CustomArrayList<>();
+
+	    for (int i = 0; i < 10; i++) {
+	        itemContents.add(i);
+	    }
+	    
+	    // Act
+	    itemContents.add(10, 10);
+	    
+	    // Assert = Check if the item was added at the specified index and if the size increased
+	    assertEquals(10, itemContents.get(10));
+	    assertEquals(11, itemContents.getSize());
+	}
 }
