@@ -25,11 +25,11 @@ public class CustomArrayList<T> implements CustomList<T> {
 	}
 
 	@Override
-	public T get(int index) {
-		if (index < 0 || index >= size) {
-			return null;
-		}
-		return (T) items[index];
+	public T get(int index) throws IndexOutOfBoundsException {
+	    if (index < 0 || index >= size) {
+	        throw new IndexOutOfBoundsException("Index " + index + " is out of bounds");
+	    }
+	    return (T) items[index];
 	}
 
 	@Override

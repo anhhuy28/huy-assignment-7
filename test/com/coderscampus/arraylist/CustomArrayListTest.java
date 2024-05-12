@@ -77,7 +77,7 @@ class CustomArrayListTest {
         CustomList<Integer> itemContents = new CustomArrayList<>();
         
         // act
-        itemContents.add(1);
+        itemContents.add(0, 1);
         
         // assert = throw index out of bounds exception when removing from invalid index via add(int index, T item)
         assertThrows(IndexOutOfBoundsException.class, () -> {
@@ -98,18 +98,37 @@ class CustomArrayListTest {
 	
 	@Test
 	void should_add_item_to_full_array() {
-	    // Arrange
+	    // arrange
 	    CustomList<Integer> itemContents = new CustomArrayList<>();
 
 	    for (int i = 0; i < 10; i++) {
 	        itemContents.add(i);
 	    }
 	    
-	    // Act
+	    // act
 	    itemContents.add(10, 10);
 	    
-	    // Assert = Check if the item was added at the specified index and if the size increased
+	    // assert = Check if the item was added at the specified index and if the size increased
 	    assertEquals(10, itemContents.get(10));
 	    assertEquals(11, itemContents.getSize());
 	}
+	
+	@Test
+	void should_remove_item_from_index() {
+		// arrange
+		CustomList<Integer> itemContents = new CustomArrayList<>();
+		itemContents.add(1);
+		itemContents.add(2);
+		itemContents.add(3);
+		
+		// act
+		Integer removedItem = itemContents.remove(1);
+		
+		// assert
+	    assertEquals(2, removedItem);
+	    assertEquals(2, itemContents.getSize());
+	    assertEquals(1, itemContents.get(0));
+	    assertEquals(3, itemContents.get(1));
+	}
+	
 }
